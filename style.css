@@ -1,7 +1,13 @@
-/* ----------------------------- */
+/* ============================= */
 /* ESTILO BASE — HORAS IGUAIS   */
 /* Azul bebê: #cfe9ff / #e8f4ff */
-/* ----------------------------- */
+/* Ajustes finais:               */
+/* - Melhor responsividade       */
+/* - Espaçamento aprimorado      */
+/* - Layout mais limpo           */
+/* - Cartões mais suaves         */
+/* - Animações leves             */
+/* ============================= */
 
 :root {
   --azul-bebe: #cfe9ff;
@@ -9,7 +15,9 @@
   --azul-escuro: #0d1b2a;
   --texto: #1a1a1a;
   --branco: #ffffff;
-  --radius: 10px;
+  --radius: 12px;
+  --shadow: 0 4px 10px rgba(0,0,0,0.08);
+  --shadow-hover: 0 6px 16px rgba(0,0,0,0.12);
 }
 
 body {
@@ -17,13 +25,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background: var(--azul-bebe-claro);
   color: var(--texto);
+  line-height: 1.6;
 }
 
 /* HEADER */
 .site-header {
   background: var(--azul-bebe);
-  padding: 20px 0;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 22px 0;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 .header-inner {
   display: flex;
@@ -31,15 +43,16 @@ body {
   align-items: center;
   max-width: 1100px;
   margin: auto;
+  padding: 0 20px;
 }
 .brand h1 {
   margin: 0;
-  font-size: 26px;
+  font-size: 28px;
   color: var(--azul-escuro);
 }
 .micro {
   font-size: 14px;
-  opacity: 0.7;
+  opacity: 0.8;
   margin-top: -4px;
 }
 
@@ -49,57 +62,61 @@ body {
   padding: 0;
   margin: 0;
   display: flex;
-  gap: 20px;
+  gap: 24px;
 }
 .main-nav a {
   text-decoration: none;
   color: var(--azul-escuro);
   font-weight: 600;
   transition: 0.2s;
+  padding: 6px 10px;
+  border-radius: 6px;
 }
 .main-nav a:hover {
-  opacity: 0.6;
+  background: rgba(255,255,255,0.6);
 }
 
 /* HERO */
 .hero-pro {
-  padding: 60px 20px;
+  padding: 70px 20px;
   background: var(--azul-bebe-claro);
   text-align: center;
 }
 .hero-pro-nome {
-  font-size: 32px;
-  margin-bottom: 10px;
+  font-size: 34px;
+  margin-bottom: 12px;
 }
 .hero-pro-desc {
-  font-size: 18px;
-  max-width: 600px;
+  font-size: 19px;
+  max-width: 650px;
   margin: auto;
+  opacity: 0.9;
 }
 
 /* CARDS */
 .index-cards {
   max-width: 1100px;
-  margin: 50px auto;
+  margin: 60px auto;
   padding: 0 20px;
 }
 .index-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
 }
 .index-card {
   background: var(--branco);
-  padding: 20px;
+  padding: 24px;
   border-radius: var(--radius);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow);
   text-decoration: none;
   color: var(--texto);
-  transition: 0.2s;
+  transition: 0.25s ease;
+  transform: translateY(0);
 }
 .index-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 5px 12px rgba(0,0,0,0.12);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
 }
 .index-card h3 {
   margin-top: 0;
@@ -109,29 +126,56 @@ body {
 /* PÁGINAS INTERNAS */
 .page {
   max-width: 900px;
-  margin: 40px auto;
+  margin: 50px auto;
   background: var(--branco);
-  padding: 30px;
+  padding: 40px;
   border-radius: var(--radius);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.4s ease;
 }
 .page h1 {
   color: var(--azul-escuro);
+  font-size: 30px;
 }
 .page h2 {
-  margin-top: 30px;
+  margin-top: 32px;
   color: var(--azul-escuro);
 }
 
-/* CARDS INDIVIDUAIS DAS HORAS */
+/* CARDS INDIVIDUAIS */
 .hora-card {
   background: var(--branco);
-  padding: 25px;
+  padding: 28px;
   border-radius: var(--radius);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 26px;
+  transition: 0.25s;
 }
-.hora-card h2 {
+.hora-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* RODAPÉ */
+footer {
+  margin-top: 60px;
+  text-align: center;
+  padding: 22px;
+  background: var(--azul-bebe);
   color: var(--azul-escuro);
-  margin-top: 0;
+  font-weight: 600;
+}
+
+/* ANIMAÇÕES */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .header-inner { flex-direction: column; gap: 16px; }
+  .main-nav ul { flex-wrap: wrap; justify-content: center; }
+  .page { padding: 26px; }
+  .hero-pro-nome { font-size: 28px; }
+  .index-cards-grid { grid-template-columns: 1fr; }
 }
